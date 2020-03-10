@@ -30,11 +30,13 @@ namespace IndyBooks
                     //  TODO: (1) Import NuGet Package "Bogus" fake data generator, then
                     //  TODO: (do after each) Use "dotnet ef database drop", and run the application and inspect your data
                     Randomizer.Seed = new Random(8672309);
-                    var authorIndex = 0;
-                    //Writers
-                    var testWriters = new Faker<Writer>()
-                        .RuleFor(w => w.Name, f => authors[authorIndex++]);
-                    var writers = testWriters.Generate(45); // TODO: (2) create a collection of 45 writers
+                    var firstNameIndex = 0;
+                    var lastNameIndex = 0; 
+            //Writers
+            var testWriters = new Faker<Writer>()
+                        .RuleFor(w => w.FirstName, f => authors[firstNameIndex++])
+                        .RuleFor(w => w.LastName, f => authors[lastNameIndex++]);
+            var writers = testWriters.Generate(45); // TODO: (2) create a collection of 45 writers
                     //Books
                     var testBooks = new Faker<Book>()
                         .RuleFor(b => b.Title, t => t.PickRandom(titles))

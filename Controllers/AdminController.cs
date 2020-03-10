@@ -39,12 +39,12 @@ namespace IndyBooks.Controllers
             {
                 //TODO:Create lambda expression to filter collection using the Name property of the Book's Author entity
                 foundBooks = foundBooks
-                    .Where(b => b.Name.Contains(search.AuthorLastName))
-                             .OrderBy(b => b.AuthorLastName)
+                    .Where(b => b.Author.LastName.Contains(search.AuthorLastName))
+                             .OrderBy(b => b.Title)
                              ;
             }
             //Priced Between Search (min and max price entered)
-            if (search.MinPrice > 0 && search.MaxPrice > 0)
+            if (search.MinPrice >= 0 && search.MaxPrice != 0)
             {
                 foundBooks = foundBooks
                              .Where(b => b.Price >= search.MinPrice && b.Price <= search.MaxPrice)
